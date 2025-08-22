@@ -1,0 +1,17 @@
+[
+  {
+    "career": "Cybersecurity Analyst",
+    "skills": ["network security", "problem solving", "attention to detail"],
+    "training": "Bachelor in Cybersecurity (Level 7, NZQF)",
+    "free_courses": ["Intro to Cybersecurity (Coursera)", "Cybersecurity Basics (edX)"],
+    "source": "https://www.careers.govt.nz/jobs-database/it-and-telecommunications/cybersecurity-analyst/"
+  },
+  {
+    "career": "Support Worker (Health & Wellbeing)",
+    "skills": ["empathy", "caregiving", "communication"],
+    "training": "NZ Certificate in Health and Wellbeing (Level 2)",
+    "free_courses": ["MySkill pre-employment online training"],
+    "source": "https://myskill.co.nz/career-opportunities/"
+  }
+]
+

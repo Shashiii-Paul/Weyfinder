@@ -24,24 +24,60 @@ It recommends careers, courses, workshops, certifications, and apprenticeships, 
 
 ---
 
-## Quick Start
-
+## Navigate to project folder
 ```bash
-# Clone repo
-git clone git@github.com:Shashiii-Paul/Weyfinder.git
-cd Weyfinder
+cd ~/career-advisor-ai
+```
 
-# Setup virtual environment
+## Initialize Git (if not already)
+```bash
+git init
+git remote add origin git@github.com:Shashiii-Paul/Weyfinder.git
+git pull origin main --rebase
+```
+
+## Configure Git identity
+```bash
+git config --global user.name "Shushmita Paul"
+git config --global user.email "your_email@example.com"
+```
+
+## Create and activate Python virtual environment
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-# Install dependencies
-pip install fastapi uvicorn cohere chromadb sentence-transformers
+## Upgrade pip and install dependencies
+```bash
+pip install --upgrade pip
+pip install fastapi uvicorn requests cohere python-dotenv chromadb sentence-transformers
+```
 
-# Run backend
-cd backend
+## Set Cohere API key
+```bash
+export COHERE_API_KEY="your_cohere_api_key_here"
+```
+
+## Create .gitignore
+```bash
+echo -e "venv/\n__pycache__/\n*.pyc" > .gitignore
+```
+
+## Stage and commit backend files
+```bash
+git add main.py data.json .gitignore
+git commit -m "Add FastAPI backend and data.json"
+```
+
+## Push to GitHub via SSH (make sure SSH key is added to GitHub)
+```bash
+git push -u origin main
+```
+
+## Run the backend server
+```bash
 uvicorn main:app --reload
-
 ```
 
 Backend API runs at http://127.0.0.1:8000

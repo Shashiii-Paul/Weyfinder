@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Career Navigator{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="header">
+        <div class="logo" style="font-size:2rem; font-weight:bold; letter-spacing:2px; color:#2d3a4a; display:flex; align-items:center; height:60px;">
+            Weyfinder
+        </div>
+        <div class="header-actions">
+            <button id="darkModeToggle" class="btn darkmode-btn" type="button" style="margin-right:1rem; padding:0.3rem 0.7rem; font-size:1rem; min-width:unset;">Dark Mode</button>
+            <form action="/set_language" method="post" class="language-form" style="display:inline-block;margin-right:1rem;">
+                <select name="language" onchange="this.form.submit()"
+                    style="padding:0.3rem 1rem; border-radius:5px; border:1px solid #ccc;">
+                    <option value="">🌐 Language</option>
+                    <option value="Māori">Te Reo Māori</option>
+                    <option value="Samoan">Gagana Samoa (Samoan)</option>
+                    <option value="Tongan">	Lea Faka-Tonga (Tongan)</option>
+                    <option value="English">English</option>
+                    <option value="Fijian">Vosa Vakaviti (Fijian)</option>
+                    <option value="Cook Islands Māori">Te Reo Māori Kūki ‘Āirani (Cook Islands Māori)</option>
+                    <option value="Other">Other</option>
+                </select>
+            </form>
+            <form action="/login" method="get" class="login-form" style="display:inline-block;">
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+    <script>
+      // Dark mode toggle
+      const toggleBtn = document.getElementById('darkModeToggle');
+      const body = document.body;
+      if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark-mode');
+      }
+      toggleBtn.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+      });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

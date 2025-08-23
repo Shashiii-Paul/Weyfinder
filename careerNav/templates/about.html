@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Tell Us About You{% endblock %}
+{% block content %}
+    <div class="welcome-section">
+        <h1>Tell Us About You</h1>
+        <form id="dynamic-about-form" action="/about_you" method="post" class="about-form" style="max-width:400px;margin:auto;">
+            <div id="step-1">
+                <label for="name">What would you like me to call you?</label>
+                <input type="text" id="name" name="name" style="width:100%;margin-bottom:0.7rem;">
+                <button type="button" class="btn" id="next-btn-1" style="margin-top:1rem;">Next</button>
+            </div>
+            <div id="step-2" style="display:none;">
+                <div style="display:flex; gap:1rem;">
+                    <div style="flex:1;">
+                        <label for="age">How old are you?</label>
+                        <select id="age" name="age" style="width:100%;margin-bottom:0.7rem;">
+                            <option value="">Select age range</option>
+                            <option value="15-18">15-18</option>
+                            <option value="19-22">19-22</option>
+                            <option value="23-28">23-28</option>
+                            <option value="29-35">29-35</option>
+                            <option value="36-50">36-50</option>
+                            <option value="51-60">51-60</option>
+                            <option value="61+">61+</option>
+                        </select>
+                    </div>
+                    <div style="flex:1;">
+                        <label for="location">Where are you located?</label>
+                        <input type="text" id="location" name="location" placeholder="e.g. Tamaki" style="width:100%;margin-bottom:0.7rem;">
+                    </div>
+                </div>
+                <button type="button" class="btn" id="next-btn-2" style="margin-top:1rem;">Next</button>
+            </div>
+            <div id="step-3" style="display:none;">
+                <label for="experience">Have you had any jobs before? </label>
+                <input type="text" id="experience" name="experience" placeholder="e.g. Retail job, hospo" style="width:100%;margin-bottom:0.7rem;">
+
+                <label for="interests">What are your interests?</label>
+                <input type="text" id="interests" name="interests" placeholder="e.g. Technology, Art" style="width:100%;margin-bottom:0.7rem;">
+
+                <label for="career_interest">Is there any career or job you are interested in?</label>
+                <input type="text" id="career_interest" name="career_interest" placeholder="e.g. Software Engineer, Nurse" style="width:100%;margin-bottom:0.7rem;">
+
+                <button type="submit" class="btn" id="submit-btn" style="margin-top:1rem;">Submit</button>
+            </div>
+        </form>
+        <a href="/" class="btn" style="margin-top:2rem;">Back to Home</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Grey out submit button on submit
+            const form = document.getElementById('dynamic-about-form');
+            const submitBtn = document.getElementById('submit-btn');
+            form.addEventListener('submit', function(e) {
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.style.background = '#aaa';
+                    submitBtn.style.cursor = 'not-allowed';
+                    submitBtn.textContent = 'Submitting...';
+                }
+            });
+            const steps = [
+                document.getElementById('step-1'),
+                document.getElementById('step-2'),
+                document.getElementById('step-3')
+            ];
+            let currentStep = 0;
+
+            function showStep(step) {
+                steps.forEach((el, idx) => {
+                    el.style.display = idx === step ? '' : 'none';
+                });
+            }
+
+            // Prevent Enter from submitting the form except on the last step
+            document.getElementById('dynamic-about-form').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    // Only allow Enter to submit on the last step
+                    if (currentStep !== 2) {
+                        e.preventDefault();
+                        // Optionally, move to next step on Enter
+                        if (currentStep === 0) {
+                            document.getElementById('next-btn-1').click();
+                        } else if (currentStep === 1) {
+                            document.getElementById('next-btn-2').click();
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('next-btn-1').onclick = function() {
+                const name = document.getElementById('name').value.trim();
+                if (name) {
+                    currentStep = 1;
+                    showStep(currentStep);
+                } else {
+                    alert('Please enter your name.');
+                }
+            };
+            document.getElementById('next-btn-2').onclick = function() {
+                currentStep = 2; showStep(currentStep);
+            };
+        });
+    </script>
+{% endblock %}

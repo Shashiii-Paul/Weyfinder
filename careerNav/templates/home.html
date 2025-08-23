@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Flask App Home{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="welcome-section">
+        <h1>Welcome to Weyfinder</h1>
+
+        <a href="/about" class="btn" style="margin-top:1.5rem;">Tell Us About You</a>
+        <div style="margin:1.5rem 0; font-weight:500;">or</div>
+        <form action="/upload_cv" method="post" enctype="multipart/form-data" style="margin-top:2rem;">
+            <input type="file" name="cv" accept=".pdf,.doc,.docx" style="margin-bottom:0.5rem;">
+            <button type="submit" class="btn">Upload CV</button>
+        </form>
+    </div>
+{% endblock %}

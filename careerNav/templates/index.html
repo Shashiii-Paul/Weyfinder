@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Pathway{% endblock %}
+{% block content %}
+    <a href="/" class="btn" style="margin-bottom:1.5rem;display:inline-block;">Back to Home</a>
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-info">
+                <h2>{{ profile.get('name', 'Your Name') }}</h2>
+                <p>Location: {{ profile.get('location', 'N/A') }}</p>
+                <p>Age: {{ profile.get('age', 'N/A') }}</p>
+                <p>Experience: {{ profile.get('experience', 'N/A') }}</p>
+                <p>Interests: {{ profile.get('interests', 'N/A') }}</p>
+                <p>Language: {{ profile.get('language', 'N/A') }}</p>
+                <p>Areas: {{ profile.get('areas', 'N/A') }}</p>
+            </div>
+        </div>
+        <div class="pathway-section">
+            <div style="margin-bottom:2rem;">
+                <h1 style="font-size:2rem; font-weight:bold; text-align:center;">AI Pathway Response</h1>
+                {% if raw_response %}
+                <pre style="background:#f8f8f8; padding:1rem; border-radius:8px; white-space:pre-wrap;">{{ raw_response }}</pre>
+                <div style="text-align:center; margin-top:2rem;">
+                    <button class="btn" style="background:#ccc; color:#666; cursor:not-allowed;" disabled>Reply (coming soon)</button>
+                </div>
+                {% else %}
+                <div style="color:#888; text-align:center;">No pathway information available.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
